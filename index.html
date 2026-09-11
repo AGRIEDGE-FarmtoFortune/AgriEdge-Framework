@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,6 +23,10 @@
           },
           colors: {
             emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
               400: '#34d399',
               500: '#10b981',
               600: '#059669',
@@ -30,12 +34,6 @@
               800: '#065f46',
               900: '#064e3b',
               950: '#022c22',
-            },
-            agridark: {
-              900: '#080d0b',
-              800: '#0f1714',
-              700: '#16221e',
-              600: '#1e2d28',
             }
           },
           animation: {
@@ -72,69 +70,69 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #080d0b;
+      background: #f1f5f9;
     }
     ::-webkit-scrollbar-thumb {
-      background: #065f46;
+      background: #10b981;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #10b981;
+      background: #059669;
     }
 
-    /* Glassmorphic Cards */
+    /* Human-Made Clean Light Cards */
     .glass-card {
-      background: rgba(15, 23, 20, 0.7);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(16, 185, 129, 0.15);
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
     }
     .glass-card-hover {
       transition: all 0.3s ease;
     }
     .glass-card-hover:hover {
-      border-color: rgba(16, 185, 129, 0.4);
-      box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+      border-color: #a7f3d0;
+      box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.12);
       transform: translateY(-2px);
     }
 
     .glass-nav {
-      background: rgba(8, 13, 11, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     }
 
     /* Grid background */
     .bg-grid-pattern {
-      background-image: radial-gradient(rgba(16, 185, 129, 0.12) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
-    /* Glowing text & border effects */
-    .glow-emerald {
-      text-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
-    }
-    .glow-border {
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    /* Glowing accent text */
+    .text-emerald-glow {
+      color: #047857;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
     }
   </style>
 </head>
-<body class="bg-agridark-900 text-gray-100 font-sans min-h-screen bg-grid-pattern selection:bg-emerald-500 selection:text-agridark-900 overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen bg-grid-pattern selection:bg-emerald-500 selection:text-white overflow-x-hidden">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
   <!-- Audio Mute Indicator -->
-  <button id="sound-toggle-btn" onclick="toggleAudio()" class="fixed bottom-5 left-5 z-40 bg-agridark-800/90 border border-emerald-500/30 p-2.5 rounded-full text-emerald-400 hover:text-emerald-300 hover:border-emerald-400 transition-all shadow-lg backdrop-blur-md" title="Toggle Sound Feedback">
+  <button id="sound-toggle-btn" onclick="toggleAudio()" class="fixed bottom-5 left-5 z-40 bg-white border border-slate-200 p-2.5 rounded-full text-slate-700 hover:text-emerald-600 hover:border-emerald-500 transition-all shadow-lg backdrop-blur-md" title="Toggle Sound Feedback">
     <i data-lucide="volume-2" class="w-5 h-5" id="sound-icon"></i>
   </button>
 
   <!-- Floating Demo Mode Control (Bottom Right) -->
   <div class="fixed bottom-5 right-5 z-40">
-    <button id="demo-toggle-btn" onclick="toggleDemoSimulation()" class="group flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white px-5 py-3 rounded-full font-semibold shadow-xl shadow-emerald-950/80 border border-emerald-400/40 transition-all transform hover:scale-105 active:scale-95">
+    <button id="demo-toggle-btn" onclick="toggleDemoSimulation()" class="group flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-5 py-3 rounded-full font-semibold shadow-xl shadow-emerald-600/20 border border-emerald-400/30 transition-all transform hover:scale-105 active:scale-95">
       <span class="relative flex h-3 w-3">
-        <span id="demo-ping" class="hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+        <span id="demo-ping" class="hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
         <span id="demo-dot" class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
       </span>
       <span id="demo-btn-text" class="text-sm tracking-wide">Demo Mode: Simulate Live Inflow</span>
@@ -148,53 +146,53 @@
   <div id="login-screen" class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
     
     <!-- Background Decor -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-200/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-72 h-72 bg-teal-200/30 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Header Branding -->
     <div class="text-center mb-8 max-w-xl animate-float">
-      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4 shadow-lg backdrop-blur-md">
-        <i data-lucide="cpu" class="w-4 h-4 text-emerald-400 animate-pulse"></i>
+      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-md">
+        <i data-lucide="cpu" class="w-4 h-4 text-emerald-600 animate-pulse"></i>
         <span>Edge-Native AI Telemetry v3.4</span>
       </div>
       <div class="flex items-center justify-center gap-3 mb-2">
-        <div class="p-3 bg-gradient-to-br from-emerald-500 to-teal-700 rounded-2xl shadow-lg shadow-emerald-900/40 text-agridark-900">
+        <div class="p-3 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl shadow-lg shadow-emerald-600/30 text-white">
           <i data-lucide="sprout" class="w-8 h-8 stroke-[2.5]"></i>
         </div>
-        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white glow-emerald">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
           Farm-to-Fortune
         </h1>
       </div>
-      <p id="lbl-subtitle" class="text-emerald-400/90 font-medium text-sm md:text-base">
+      <p id="lbl-subtitle" class="text-emerald-800 font-medium text-sm md:text-base">
         AI-Powered Quality Grading & Fair Market Discovery
       </p>
     </div>
 
     <!-- Authentication Card -->
-    <div class="glass-card w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl border border-emerald-500/20 relative overflow-hidden">
+    <div class="glass-card w-full max-w-md rounded-3xl p-6 md:p-8 shadow-xl border border-slate-200 relative overflow-hidden bg-white">
       
       <!-- Top Badge -->
-      <div class="flex items-center justify-between mb-6 pb-4 border-b border-emerald-500/10">
+      <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
         <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          <span id="lbl-fpo" class="text-xs font-semibold text-emerald-300 tracking-wide">Connected Node: MH FPO Cluster #04</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+          <span id="lbl-fpo" class="text-xs font-semibold text-slate-700 tracking-wide">Connected Node: MH FPO Cluster #04</span>
         </div>
         
         <!-- Language Switcher Pills -->
-        <div class="flex items-center bg-agridark-800/80 p-1 rounded-lg border border-emerald-500/20 text-xs">
+        <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
           <button onclick="setLanguage('en')" id="lang-en" class="px-2.5 py-1 rounded-md font-medium transition-all bg-emerald-600 text-white shadow">EN</button>
-          <button onclick="setLanguage('hi')" id="lang-hi" class="px-2.5 py-1 rounded-md font-medium transition-all text-emerald-400 hover:text-white">हिंदी</button>
-          <button onclick="setLanguage('mr')" id="lang-mr" class="px-2.5 py-1 rounded-md font-medium transition-all text-emerald-400 hover:text-white">मराठी</button>
+          <button onclick="setLanguage('hi')" id="lang-hi" class="px-2.5 py-1 rounded-md font-medium transition-all text-slate-600 hover:text-slate-900">हिंदी</button>
+          <button onclick="setLanguage('mr')" id="lang-mr" class="px-2.5 py-1 rounded-md font-medium transition-all text-slate-600 hover:text-slate-900">मराठी</button>
         </div>
       </div>
 
       <!-- Auth Method Tabs -->
-      <div class="grid grid-cols-2 gap-2 p-1.5 bg-agridark-800/90 rounded-2xl border border-emerald-500/20 mb-6 text-sm">
+      <div class="grid grid-cols-2 gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200 mb-6 text-sm">
         <button id="tab-mobile" onclick="switchAuthTab('mobile')" class="py-2.5 px-3 rounded-xl font-medium transition-all bg-emerald-600 text-white shadow-md flex items-center justify-center gap-2">
           <i data-lucide="smartphone" class="w-4 h-4"></i>
           <span id="lbl-tab-mobile">Mobile OTP</span>
         </button>
-        <button id="tab-kisan" onclick="switchAuthTab('kisan')" class="py-2.5 px-3 rounded-xl font-medium transition-all text-emerald-300 hover:text-white flex items-center justify-center gap-2">
+        <button id="tab-kisan" onclick="switchAuthTab('kisan')" class="py-2.5 px-3 rounded-xl font-medium transition-all text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
           <i data-lucide="id-card" class="w-4 h-4"></i>
           <span id="lbl-tab-kisan">Kisan ID / Aadhaar</span>
         </button>
@@ -203,28 +201,28 @@
       <!-- Mobile OTP Form -->
       <form id="form-mobile" onsubmit="event.preventDefault(); triggerLogin();" class="space-y-4">
         <div>
-          <label id="lbl-mobile-num" class="block text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2">Mobile Number (+91)</label>
+          <label id="lbl-mobile-num" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Mobile Number (+91)</label>
           <div class="relative">
-            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-emerald-500 font-semibold text-sm">+91</span>
-            <input type="tel" id="mobile-input" maxlength="10" placeholder="98765 43210" value="9823011409" class="w-full pl-14 pr-4 py-3 bg-agridark-900/90 border border-emerald-500/30 rounded-xl text-white placeholder-emerald-800 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 font-mono text-base transition-all" required />
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-emerald-600 font-semibold text-sm">+91</span>
+            <input type="tel" id="mobile-input" maxlength="10" placeholder="98765 43210" value="9823011409" class="w-full pl-14 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white font-mono text-base transition-all" required />
           </div>
         </div>
 
         <!-- Simulated OTP Input -->
         <div>
           <div class="flex justify-between items-center mb-2">
-            <label id="lbl-otp-code" class="block text-xs font-semibold text-emerald-300 uppercase tracking-wider">Verification OTP</label>
-            <span class="text-xs text-emerald-400 font-mono">Auto-generated: <strong class="text-white">4109</strong></span>
+            <label id="lbl-otp-code" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider">Verification OTP</label>
+            <span class="text-xs text-emerald-700 font-mono">Auto-generated: <strong class="text-slate-900">4109</strong></span>
           </div>
           <div class="grid grid-cols-4 gap-3">
-            <input type="text" maxlength="1" value="4" class="otp-box w-full h-12 text-center bg-agridark-900/90 border border-emerald-500/40 rounded-xl text-emerald-300 font-mono text-xl font-bold focus:border-emerald-400 focus:outline-none" />
-            <input type="text" maxlength="1" value="1" class="otp-box w-full h-12 text-center bg-agridark-900/90 border border-emerald-500/40 rounded-xl text-emerald-300 font-mono text-xl font-bold focus:border-emerald-400 focus:outline-none" />
-            <input type="text" maxlength="1" value="0" class="otp-box w-full h-12 text-center bg-agridark-900/90 border border-emerald-500/40 rounded-xl text-emerald-300 font-mono text-xl font-bold focus:border-emerald-400 focus:outline-none" />
-            <input type="text" maxlength="1" value="9" class="otp-box w-full h-12 text-center bg-agridark-900/90 border border-emerald-500/40 rounded-xl text-emerald-300 font-mono text-xl font-bold focus:border-emerald-400 focus:outline-none" />
+            <input type="text" maxlength="1" value="4" class="otp-box w-full h-12 text-center bg-slate-50 border border-slate-300 rounded-xl text-emerald-700 font-mono text-xl font-bold focus:border-emerald-500 focus:bg-white focus:outline-none" />
+            <input type="text" maxlength="1" value="1" class="otp-box w-full h-12 text-center bg-slate-50 border border-slate-300 rounded-xl text-emerald-700 font-mono text-xl font-bold focus:border-emerald-500 focus:bg-white focus:outline-none" />
+            <input type="text" maxlength="1" value="0" class="otp-box w-full h-12 text-center bg-slate-50 border border-slate-300 rounded-xl text-emerald-700 font-mono text-xl font-bold focus:border-emerald-500 focus:bg-white focus:outline-none" />
+            <input type="text" maxlength="1" value="9" class="otp-box w-full h-12 text-center bg-slate-50 border border-slate-300 rounded-xl text-emerald-700 font-mono text-xl font-bold focus:border-emerald-500 focus:bg-white focus:outline-none" />
           </div>
         </div>
 
-        <button type="submit" class="w-full mt-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-agridark-900 font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-950/60 transition-all flex items-center justify-center gap-2 transform active:scale-95">
+        <button type="submit" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 transform active:scale-95">
           <i data-lucide="shield-check" class="w-5 h-5"></i>
           <span id="btn-login-text">Verify & Access Dashboard</span>
         </button>
@@ -233,23 +231,23 @@
       <!-- Kisan ID Form (Hidden by default) -->
       <form id="form-kisan" onsubmit="event.preventDefault(); triggerLogin();" class="space-y-4 hidden">
         <div>
-          <label id="lbl-kisan-id" class="block text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2">Kisan ID / Aadhaar Number</label>
-          <input type="text" placeholder="KCC-MH-2026-8941" value="KCC-MH-2026-8941" class="w-full px-4 py-3 bg-agridark-900/90 border border-emerald-500/30 rounded-xl text-white placeholder-emerald-800 focus:outline-none focus:border-emerald-400 font-mono text-sm transition-all" required />
+          <label id="lbl-kisan-id" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Kisan ID / Aadhaar Number</label>
+          <input type="text" placeholder="KCC-MH-2026-8941" value="KCC-MH-2026-8941" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white font-mono text-sm transition-all" required />
         </div>
         <div>
-          <label id="lbl-pin" class="block text-xs font-semibold text-emerald-300 uppercase tracking-wider mb-2">Security PIN</label>
-          <input type="password" value="••••" class="w-full px-4 py-3 bg-agridark-900/90 border border-emerald-500/30 rounded-xl text-white placeholder-emerald-800 focus:outline-none focus:border-emerald-400 font-mono text-sm transition-all" required />
+          <label id="lbl-pin" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Security PIN</label>
+          <input type="password" value="••••" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white font-mono text-sm transition-all" required />
         </div>
-        <button type="submit" class="w-full mt-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-agridark-900 font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-950/60 transition-all flex items-center justify-center gap-2 transform active:scale-95">
+        <button type="submit" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 transform active:scale-95">
           <i data-lucide="key" class="w-5 h-5"></i>
           <span id="btn-login-kisan">Authenticate Edge Key</span>
         </button>
       </form>
 
       <!-- One-Click Judge Quick Login -->
-      <div class="mt-6 pt-5 border-t border-emerald-500/10">
-        <button onclick="demoQuickLogin()" class="w-full py-3 px-4 bg-emerald-950/60 hover:bg-emerald-900/50 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 group">
-          <i data-lucide="zap" class="w-4 h-4 text-emerald-400 fill-emerald-400/20 group-hover:scale-110 transition-transform"></i>
+      <div class="mt-6 pt-5 border-t border-slate-100">
+        <button onclick="demoQuickLogin()" class="w-full py-3 px-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 group">
+          <i data-lucide="zap" class="w-4 h-4 text-emerald-600 fill-emerald-600/20 group-hover:scale-110 transition-transform"></i>
           <span id="btn-quick-demo">Demo Quick Login (Farmer Profile)</span>
         </button>
       </div>
@@ -257,8 +255,8 @@
     </div>
 
     <!-- Security Footer -->
-    <div class="mt-6 text-center text-xs text-emerald-400/60 flex items-center gap-2">
-      <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+    <div class="mt-6 text-center text-xs text-slate-500 flex items-center gap-2">
+      <i data-lucide="lock" class="w-3.5 h-3.5 text-slate-400"></i>
       <span>Secured by Agri-Edge TinyML Node Protocol • Encryption: AES-256</span>
     </div>
   </div>
@@ -267,13 +265,13 @@
   <!-- ========================================== -->
   <!-- LOADING SCREEN OVERLAY                     -->
   <!-- ========================================== -->
-  <div id="loading-overlay" class="fixed inset-0 bg-agridark-900/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-6 hidden">
+  <div id="loading-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-6 hidden">
     <div class="relative flex items-center justify-center mb-6">
-      <div class="w-24 h-24 rounded-full border-4 border-emerald-500/20 border-t-emerald-400 animate-spin"></div>
-      <i data-lucide="cpu" class="w-10 h-10 text-emerald-400 absolute"></i>
+      <div class="w-24 h-24 rounded-full border-4 border-slate-200 border-t-emerald-600 animate-spin"></div>
+      <i data-lucide="cpu" class="w-10 h-10 text-emerald-600 absolute"></i>
     </div>
-    <h3 id="lbl-loading-title" class="text-xl font-bold text-white mb-2 tracking-wide">Verifying Node Credentials & Edge Keys...</h3>
-    <p id="lbl-loading-sub" class="text-emerald-400/80 text-sm font-mono animate-pulse">Syncing TinyML models with ESP32 Hardware Booth</p>
+    <h3 id="lbl-loading-title" class="text-xl font-bold text-slate-900 mb-2 tracking-wide">Verifying Node Credentials & Edge Keys...</h3>
+    <p id="lbl-loading-sub" class="text-emerald-700 text-sm font-mono animate-pulse">Syncing TinyML models with ESP32 Hardware Booth</p>
   </div>
 
 
@@ -285,30 +283,30 @@
     <!-- Top Navigation Bar -->
     <header class="glass-nav sticky top-0 z-30 px-4 md:px-8 py-3.5 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="p-2 bg-gradient-to-br from-emerald-500 to-teal-700 rounded-xl text-agridark-900 shadow-md">
+        <div class="p-2 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-xl text-white shadow-md">
           <i data-lucide="sprout" class="w-6 h-6 stroke-[2.5]"></i>
         </div>
         <div>
-          <h1 class="text-lg md:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
+          <h1 class="text-lg md:text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
             Farm-to-Fortune
-            <span class="text-xs px-2 py-0.5 rounded-md bg-emerald-950 border border-emerald-500/30 text-emerald-400 font-mono font-normal">Agri-Edge Platform</span>
+            <span class="text-xs px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono font-medium">Agri-Edge Platform</span>
           </h1>
         </div>
       </div>
 
       <!-- Center Edge Status Banner (Desktop) -->
-      <div class="hidden lg:flex items-center gap-4 bg-agridark-800/80 px-4 py-1.5 rounded-full border border-emerald-500/20 text-xs">
+      <div class="hidden lg:flex items-center gap-4 bg-slate-100/90 px-4 py-1.5 rounded-full border border-slate-200 text-xs">
         <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span class="text-emerald-300 font-semibold">ESP32 Edge Node: <strong class="text-white">Online</strong></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span class="text-slate-700 font-semibold">ESP32 Edge Node: <strong class="text-emerald-700">Online</strong></span>
         </div>
-        <span class="text-emerald-700">|</span>
-        <div class="text-emerald-400 font-mono">
-          Inference Latency: <strong class="text-white">42ms</strong> (Local TinyML)
+        <span class="text-slate-300">|</span>
+        <div class="text-slate-600 font-mono">
+          Inference Latency: <strong class="text-slate-900">42ms</strong> (Local TinyML)
         </div>
-        <span class="text-emerald-700">|</span>
-        <div class="text-emerald-400 flex items-center gap-1">
-          <i data-lucide="cloud-sun" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span class="text-slate-300">|</span>
+        <div class="text-slate-600 flex items-center gap-1">
+          <i data-lucide="cloud-sun" class="w-3.5 h-3.5 text-amber-500"></i>
           <span>Pune, MH: 28°C Optimal Storage</span>
         </div>
       </div>
@@ -316,20 +314,20 @@
       <!-- Right User Controls -->
       <div class="flex items-center gap-3">
         <!-- Language Switcher Pills -->
-        <div class="flex items-center bg-agridark-800/80 p-1 rounded-lg border border-emerald-500/20 text-xs">
-          <button onclick="setLanguage('en')" id="dash-lang-en" class="px-2 py-0.5 rounded font-medium text-emerald-400 hover:text-white">EN</button>
-          <button onclick="setLanguage('hi')" id="dash-lang-hi" class="px-2 py-0.5 rounded font-medium text-emerald-400 hover:text-white">हिंदी</button>
-          <button onclick="setLanguage('mr')" id="dash-lang-mr" class="px-2 py-0.5 rounded font-medium text-emerald-400 hover:text-white">मराठी</button>
+        <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+          <button onclick="setLanguage('en')" id="dash-lang-en" class="px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900">EN</button>
+          <button onclick="setLanguage('hi')" id="dash-lang-hi" class="px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900">हिंदी</button>
+          <button onclick="setLanguage('mr')" id="dash-lang-mr" class="px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900">मराठी</button>
         </div>
 
         <!-- User Chip -->
-        <div class="hidden sm:flex items-center gap-2 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1.5 rounded-xl text-xs">
-          <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
-          <span id="lbl-user-welcome" class="text-emerald-200 font-medium">Welcome, Kisan #4109</span>
+        <div class="hidden sm:flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl text-xs">
+          <i data-lucide="user-check" class="w-4 h-4 text-emerald-600"></i>
+          <span id="lbl-user-welcome" class="text-emerald-900 font-medium">Welcome, Kisan #4109</span>
         </div>
 
         <!-- Logout Button -->
-        <button onclick="logout()" class="p-2 rounded-xl bg-agridark-800 hover:bg-rose-950/60 border border-emerald-500/20 hover:border-rose-500/40 text-emerald-400 hover:text-rose-400 transition-all" title="Logout">
+        <button onclick="logout()" class="p-2 rounded-xl bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-300 text-slate-600 hover:text-rose-600 transition-all" title="Logout">
           <i data-lucide="log-out" class="w-4 h-4"></i>
         </button>
       </div>
@@ -342,64 +340,64 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Card 1 -->
-        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden">
+        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden bg-white">
           <div class="flex justify-between items-start">
             <div>
-              <p id="lbl-kpi-1" class="text-xs font-semibold uppercase text-emerald-400/80 tracking-wider">Total Batches Inspected</p>
-              <h3 id="kpi-batches" class="text-2xl md:text-3xl font-extrabold text-white mt-1 font-mono">1,248 Units</h3>
-              <span class="inline-flex items-center text-xs text-emerald-400 font-medium mt-2">
+              <p id="lbl-kpi-1" class="text-xs font-semibold uppercase text-slate-500 tracking-wider">Total Batches Inspected</p>
+              <h3 id="kpi-batches" class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1 font-mono">1,248 Units</h3>
+              <span class="inline-flex items-center text-xs text-emerald-700 font-medium mt-2">
                 <i data-lucide="trending-up" class="w-3.5 h-3.5 mr-1"></i> +14% vs last week
               </span>
             </div>
-            <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700">
               <i data-lucide="box" class="w-6 h-6"></i>
             </div>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden">
+        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden bg-white">
           <div class="flex justify-between items-start">
             <div>
-              <p id="lbl-kpi-2" class="text-xs font-semibold uppercase text-emerald-400/80 tracking-wider">Grade A Pass Rate</p>
-              <h3 id="kpi-passrate" class="text-2xl md:text-3xl font-extrabold text-emerald-300 mt-1 font-mono">87.4%</h3>
-              <span class="inline-flex items-center text-xs text-emerald-400 font-medium mt-2">
+              <p id="lbl-kpi-2" class="text-xs font-semibold uppercase text-slate-500 tracking-wider">Grade A Pass Rate</p>
+              <h3 id="kpi-passrate" class="text-2xl md:text-3xl font-extrabold text-emerald-700 mt-1 font-mono">87.4%</h3>
+              <span class="inline-flex items-center text-xs text-emerald-700 font-medium mt-2">
                 <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1"></i> High Export Premium
               </span>
             </div>
-            <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700">
               <i data-lucide="award" class="w-6 h-6"></i>
             </div>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden">
+        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden bg-white">
           <div class="flex justify-between items-start">
             <div>
-              <p id="lbl-kpi-3" class="text-xs font-semibold uppercase text-emerald-400/80 tracking-wider">Avg Moisture Content</p>
-              <h3 id="kpi-moisture" class="text-2xl md:text-3xl font-extrabold text-white mt-1 font-mono">11.2%</h3>
-              <span class="inline-flex items-center text-xs text-teal-400 font-medium mt-2">
+              <p id="lbl-kpi-3" class="text-xs font-semibold uppercase text-slate-500 tracking-wider">Avg Moisture Content</p>
+              <h3 id="kpi-moisture" class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1 font-mono">11.2%</h3>
+              <span class="inline-flex items-center text-xs text-teal-700 font-medium mt-2">
                 <i data-lucide="shield" class="w-3.5 h-3.5 mr-1"></i> Safe Storage Level
               </span>
             </div>
-            <div class="p-3 bg-teal-500/10 border border-teal-500/20 rounded-xl text-teal-400">
+            <div class="p-3 bg-teal-50 border border-teal-200 rounded-xl text-teal-700">
               <i data-lucide="droplets" class="w-6 h-6"></i>
             </div>
           </div>
         </div>
 
         <!-- Card 4 -->
-        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden">
+        <div class="glass-card glass-card-hover p-5 rounded-2xl relative overflow-hidden bg-white">
           <div class="flex justify-between items-start">
             <div>
-              <p id="lbl-kpi-4" class="text-xs font-semibold uppercase text-emerald-400/80 tracking-wider">Active Transit Shipments</p>
-              <h3 id="kpi-transit" class="text-2xl md:text-3xl font-extrabold text-amber-300 mt-1 font-mono">4 In-Route</h3>
-              <span class="inline-flex items-center text-xs text-amber-400 font-medium mt-2">
+              <p id="lbl-kpi-4" class="text-xs font-semibold uppercase text-slate-500 tracking-wider">Active Transit Shipments</p>
+              <h3 id="kpi-transit" class="text-2xl md:text-3xl font-extrabold text-amber-700 mt-1 font-mono">4 In-Route</h3>
+              <span class="inline-flex items-center text-xs text-amber-600 font-medium mt-2">
                 <i data-lucide="truck" class="w-3.5 h-3.5 mr-1"></i> Cold-Chain Monitored
               </span>
             </div>
-            <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400">
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-600">
               <i data-lucide="navigation" class="w-6 h-6"></i>
             </div>
           </div>
@@ -412,22 +410,22 @@
         
         <!-- LEFT PANEL: REAL-TIME OPTICAL AI GRADING BOOTH (COL-7) -->
         <div class="lg:col-span-7 space-y-6">
-          <div class="glass-card rounded-3xl p-5 md:p-6 space-y-5 border border-emerald-500/20">
+          <div class="glass-card rounded-3xl p-5 md:p-6 space-y-5 border border-slate-200 bg-white">
             
             <!-- Booth Header & Crop Selector -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-emerald-500/10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
               <div>
-                <h2 id="lbl-grading-title" class="text-lg font-bold text-white flex items-center gap-2">
-                  <i data-lucide="camera" class="w-5 h-5 text-emerald-400"></i>
+                <h2 id="lbl-grading-title" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <i data-lucide="camera" class="w-5 h-5 text-emerald-600"></i>
                   Real-Time Optical AI Grading Booth
                 </h2>
-                <p id="lbl-grading-sub" class="text-xs text-emerald-400/80">TinyML Edge Inspection & Defect Segmentation</p>
+                <p id="lbl-grading-sub" class="text-xs text-slate-500">TinyML Edge Inspection & Defect Segmentation</p>
               </div>
 
               <!-- Crop Type Selector -->
-              <div class="flex items-center gap-2 bg-agridark-900/90 p-1 rounded-xl border border-emerald-500/30">
-                <span class="text-xs text-emerald-400 font-semibold px-2">Crop:</span>
-                <select id="crop-select" onchange="changeCropSample()" class="bg-agridark-800 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-emerald-500/20 focus:outline-none focus:border-emerald-400">
+              <div class="flex items-center gap-2 bg-slate-50 p-1 rounded-xl border border-slate-200">
+                <span class="text-xs text-slate-700 font-semibold px-2">Crop:</span>
+                <select id="crop-select" onchange="changeCropSample()" class="bg-white text-slate-900 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-300 focus:outline-none focus:border-emerald-500">
                   <option value="tomato">🍅 Fresh Tomatoes</option>
                   <option value="apple">🍎 Red Apples</option>
                   <option value="mango">🥭 Alphonso Mangoes</option>
@@ -437,13 +435,13 @@
             </div>
 
             <!-- Camera Viewport Box -->
-            <div class="relative bg-black rounded-2xl overflow-hidden border border-emerald-500/30 aspect-video flex items-center justify-center shadow-inner group">
+            <div class="relative bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 aspect-video flex items-center justify-center shadow-inner group">
               
               <!-- Simulated Crop Sample Visual (SVG / Canvas Overlay) -->
-              <div id="crop-viewport" class="relative w-full h-full flex items-center justify-center bg-radial from-emerald-950/40 to-black p-4">
+              <div id="crop-viewport" class="relative w-full h-full flex items-center justify-center bg-radial from-slate-900 to-black p-4">
                 
                 <!-- Background Grid inside Camera Viewport -->
-                <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
 
                 <!-- Laser Scanning Sweep Bar (Animated during scan) -->
                 <div id="scanner-laser" class="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_15px_#10b981] hidden z-20"></div>
@@ -458,10 +456,10 @@
 
                   <!-- AI Bounding Box Overlay -->
                   <div id="bounding-box" class="absolute inset-2 border-2 border-dashed border-emerald-400 rounded-2xl pointer-events-none transition-all duration-300">
-                    <span class="absolute -top-3 left-3 bg-emerald-500 text-agridark-900 text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider shadow">
+                    <span class="absolute -top-3 left-3 bg-emerald-500 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider shadow">
                       AI Detect: <span id="lbl-box-crop">Tomato #4109</span>
                     </span>
-                    <span class="absolute -bottom-3 right-3 bg-agridark-900 border border-emerald-400 text-emerald-300 text-[10px] font-mono px-2 py-0.5 rounded">
+                    <span class="absolute -bottom-3 right-3 bg-slate-900 border border-emerald-400 text-emerald-300 text-[10px] font-mono px-2 py-0.5 rounded">
                       Confidence: <span id="lbl-box-conf">98.6%</span>
                     </span>
 
@@ -473,10 +471,10 @@
                 </div>
 
                 <!-- Camera Crosshair Controls Overlay -->
-                <div class="absolute top-3 left-3 text-[10px] font-mono text-emerald-400/80 bg-black/60 px-2 py-1 rounded border border-emerald-500/20">
+                <div class="absolute top-3 left-3 text-[10px] font-mono text-emerald-400/90 bg-slate-900/80 px-2 py-1 rounded border border-slate-700">
                   REC • 1080p @ 60 FPS • Edge AI Node
                 </div>
-                <div class="absolute top-3 right-3 text-[10px] font-mono text-emerald-400/80 bg-black/60 px-2 py-1 rounded border border-emerald-500/20 flex items-center gap-1.5">
+                <div class="absolute top-3 right-3 text-[10px] font-mono text-emerald-400/90 bg-slate-900/80 px-2 py-1 rounded border border-slate-700 flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                   <span>TinyML Model v2.1</span>
                 </div>
@@ -484,12 +482,12 @@
 
               <!-- Viewport Bottom Controls -->
               <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center z-10">
-                <button onclick="scanBatch()" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-agridark-900 text-xs font-extrabold px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 transition-all transform active:scale-95">
+                <button onclick="scanBatch()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-extrabold px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 transition-all transform active:scale-95">
                   <i data-lucide="scan" class="w-4 h-4"></i>
                   <span id="btn-scan-text">Scan New Batch</span>
                 </button>
 
-                <button onclick="openCertificateModal()" class="bg-agridark-800/90 hover:bg-agridark-700 text-emerald-300 text-xs font-semibold px-3 py-2 rounded-xl border border-emerald-500/30 flex items-center gap-1.5 transition-all">
+                <button onclick="openCertificateModal()" class="bg-slate-900/90 hover:bg-slate-800 text-emerald-300 text-xs font-semibold px-3 py-2 rounded-xl border border-slate-700 flex items-center gap-1.5 transition-all">
                   <i data-lucide="qr-code" class="w-4 h-4"></i>
                   <span>Digital Certificate</span>
                 </button>
@@ -499,29 +497,29 @@
 
             <!-- Live AI Metrics Panel Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              <div class="bg-agridark-900/80 p-3 rounded-xl border border-emerald-500/20">
-                <span id="lbl-metric-defect" class="text-[11px] font-semibold text-emerald-400/70 uppercase">Surface Defect</span>
-                <p id="val-defect" class="text-lg font-mono font-bold text-emerald-300">1.8%</p>
-                <span class="text-[10px] text-emerald-500">Threshold &lt; 5.0%</span>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span id="lbl-metric-defect" class="text-[11px] font-semibold text-slate-500 uppercase">Surface Defect</span>
+                <p id="val-defect" class="text-lg font-mono font-bold text-slate-900">1.8%</p>
+                <span class="text-[10px] text-emerald-700 font-medium">Threshold &lt; 5.0%</span>
               </div>
 
-              <div class="bg-agridark-900/80 p-3 rounded-xl border border-emerald-500/20">
-                <span id="lbl-metric-color" class="text-[11px] font-semibold text-emerald-400/70 uppercase">Color Uniformity</span>
-                <p id="val-color" class="text-lg font-mono font-bold text-white">96.2%</p>
-                <span class="text-[10px] text-emerald-400">High Grade Color</span>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span id="lbl-metric-color" class="text-[11px] font-semibold text-slate-500 uppercase">Color Uniformity</span>
+                <p id="val-color" class="text-lg font-mono font-bold text-slate-900">96.2%</p>
+                <span class="text-[10px] text-emerald-700 font-medium">High Grade Color</span>
               </div>
 
-              <div class="bg-agridark-900/80 p-3 rounded-xl border border-emerald-500/20">
-                <span id="lbl-metric-moisture" class="text-[11px] font-semibold text-emerald-400/70 uppercase">Moisture Telemetry</span>
-                <p id="val-moisture" class="text-lg font-mono font-bold text-teal-300">11.5%</p>
-                <span class="text-[10px] text-teal-400">Optimal Safe Hydration</span>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span id="lbl-metric-moisture" class="text-[11px] font-semibold text-slate-500 uppercase">Moisture Telemetry</span>
+                <p id="val-moisture" class="text-lg font-mono font-bold text-teal-700">11.5%</p>
+                <span class="text-[10px] text-teal-700 font-medium">Optimal Safe Hydration</span>
               </div>
 
               <!-- Overall Verdict Badge -->
-              <div class="bg-gradient-to-br from-emerald-950 to-agridark-900 p-3 rounded-xl border border-emerald-400/40 flex flex-col justify-center items-center text-center shadow-lg">
-                <span id="lbl-verdict-title" class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Quality Verdict</span>
-                <span id="val-grade-badge" class="text-sm font-extrabold text-emerald-300 tracking-wider glow-emerald">GRADE A</span>
-                <span id="val-grade-sub" class="text-[9px] text-emerald-400/80 uppercase font-semibold">Export / Premium</span>
+              <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-3 rounded-xl border border-emerald-300 flex flex-col justify-center items-center text-center shadow-sm">
+                <span id="lbl-verdict-title" class="text-[10px] font-bold text-emerald-800 uppercase tracking-widest">Quality Verdict</span>
+                <span id="val-grade-badge" class="text-sm font-extrabold text-emerald-700 tracking-wider">GRADE A</span>
+                <span id="val-grade-sub" class="text-[9px] text-emerald-800 uppercase font-semibold">Export / Premium</span>
               </div>
             </div>
 
@@ -531,20 +529,20 @@
 
         <!-- RIGHT PANEL: APMC MANDI REAL-TIME PRICE MATCHING (COL-5) -->
         <div class="lg:col-span-5 space-y-6">
-          <div class="glass-card rounded-3xl p-5 md:p-6 space-y-5 border border-emerald-500/20 h-full flex flex-col justify-between">
+          <div class="glass-card rounded-3xl p-5 md:p-6 space-y-5 border border-slate-200 bg-white h-full flex flex-col justify-between">
             
             <div>
               <!-- Header -->
-              <div class="flex items-center justify-between pb-4 border-b border-emerald-500/10">
+              <div class="flex items-center justify-between pb-4 border-b border-slate-100">
                 <div>
-                  <h2 id="lbl-mandi-title" class="text-lg font-bold text-white flex items-center gap-2">
-                    <i data-lucide="store" class="w-5 h-5 text-emerald-400"></i>
+                  <h2 id="lbl-mandi-title" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="store" class="w-5 h-5 text-emerald-600"></i>
                     APMC Mandi Real-Time Price Matching
                   </h2>
-                  <p id="lbl-mandi-sub" class="text-xs text-emerald-400/80">Direct Fair Market Rate for <span id="mandi-crop-name" class="font-bold text-white">Grade A Tomato</span></p>
+                  <p id="lbl-mandi-sub" class="text-xs text-slate-500">Direct Fair Market Rate for <span id="mandi-crop-name" class="font-bold text-slate-900">Grade A Tomato</span></p>
                 </div>
-                <span class="text-xs bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono px-2.5 py-1 rounded-full flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Ticker
+                <span class="text-xs bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono px-2.5 py-1 rounded-full flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Live Ticker
                 </span>
               </div>
 
@@ -552,78 +550,78 @@
               <div class="mt-4 space-y-3">
                 
                 <!-- Option 1: Pune APMC (Recommended) -->
-                <div class="p-3.5 rounded-2xl bg-emerald-950/60 border border-emerald-400/40 flex items-center justify-between transition-all hover:bg-emerald-900/40 shadow-lg">
+                <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-300 flex items-center justify-between transition-all hover:bg-emerald-100/60 shadow-sm">
                   <div class="flex items-center gap-3">
-                    <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-xl">
+                    <div class="p-2 bg-emerald-600 text-white rounded-xl shadow-sm">
                       <i data-lucide="map-pin" class="w-5 h-5"></i>
                     </div>
                     <div>
                       <div class="flex items-center gap-2">
-                        <h4 class="text-sm font-bold text-white">Pune APMC Market</h4>
-                        <span class="text-[10px] bg-emerald-500 text-agridark-900 font-extrabold px-2 py-0.5 rounded">Highest</span>
+                        <h4 class="text-sm font-bold text-slate-900">Pune APMC Market</h4>
+                        <span class="text-[10px] bg-emerald-600 text-white font-extrabold px-2 py-0.5 rounded">Highest</span>
                       </div>
-                      <p class="text-xs text-emerald-400/80">Distance: 14 km • Direct Co-op Buyout</p>
+                      <p class="text-xs text-slate-600">Distance: 14 km • Direct Co-op Buyout</p>
                     </div>
                   </div>
                   <div class="text-right">
-                    <span id="rate-pune" class="text-xl font-extrabold font-mono text-emerald-300">₹42/kg</span>
-                    <button onclick="openTradeModal('Pune APMC', 42)" class="block mt-1 text-[11px] bg-emerald-500 hover:bg-emerald-400 text-agridark-900 font-extrabold px-3 py-1 rounded-lg transition-all">
+                    <span id="rate-pune" class="text-xl font-extrabold font-mono text-emerald-700">₹42/kg</span>
+                    <button onclick="openTradeModal('Pune APMC', 42)" class="block mt-1 text-[11px] bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-3 py-1 rounded-lg transition-all shadow-sm">
                       Lock Price
                     </button>
                   </div>
                 </div>
 
                 <!-- Option 2: Vashi Mandi -->
-                <div class="p-3.5 rounded-2xl bg-agridark-900/80 border border-emerald-500/15 flex items-center justify-between transition-all hover:border-emerald-500/30">
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between transition-all hover:border-slate-300">
                   <div class="flex items-center gap-3">
-                    <div class="p-2 bg-teal-500/10 text-teal-400 rounded-xl">
+                    <div class="p-2 bg-teal-100 text-teal-800 rounded-xl">
                       <i data-lucide="map-pin" class="w-5 h-5"></i>
                     </div>
                     <div>
-                      <h4 class="text-sm font-bold text-white">Vashi Mandi (Mumbai)</h4>
-                      <p class="text-xs text-emerald-400/80">Distance: 142 km • Transit Logistics Ready</p>
+                      <h4 class="text-sm font-bold text-slate-900">Vashi Mandi (Mumbai)</h4>
+                      <p class="text-xs text-slate-500">Distance: 142 km • Transit Logistics Ready</p>
                     </div>
                   </div>
                   <div class="text-right">
-                    <span id="rate-vashi" class="text-lg font-bold font-mono text-gray-200">₹39/kg</span>
-                    <button onclick="openTradeModal('Vashi Mandi', 39)" class="block mt-1 text-[11px] bg-agridark-800 hover:bg-emerald-950 text-emerald-300 font-semibold px-3 py-1 rounded-lg border border-emerald-500/30 transition-all">
+                    <span id="rate-vashi" class="text-lg font-bold font-mono text-slate-800">₹39/kg</span>
+                    <button onclick="openTradeModal('Vashi Mandi', 39)" class="block mt-1 text-[11px] bg-white hover:bg-slate-100 text-slate-800 font-semibold px-3 py-1 rounded-lg border border-slate-300 transition-all shadow-xs">
                       Lock Price
                     </button>
                   </div>
                 </div>
 
                 <!-- Option 3: Nashik Mandi -->
-                <div class="p-3.5 rounded-2xl bg-agridark-900/80 border border-emerald-500/15 flex items-center justify-between transition-all hover:border-emerald-500/30">
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between transition-all hover:border-slate-300">
                   <div class="flex items-center gap-3">
-                    <div class="p-2 bg-teal-500/10 text-teal-400 rounded-xl">
+                    <div class="p-2 bg-teal-100 text-teal-800 rounded-xl">
                       <i data-lucide="map-pin" class="w-5 h-5"></i>
                     </div>
                     <div>
-                      <h4 class="text-sm font-bold text-white">Nashik Regional APMC</h4>
-                      <p class="text-xs text-emerald-400/80">Distance: 180 km • Bulk Processing Hub</p>
+                      <h4 class="text-sm font-bold text-slate-900">Nashik Regional APMC</h4>
+                      <p class="text-xs text-slate-500">Distance: 180 km • Bulk Processing Hub</p>
                     </div>
                   </div>
                   <div class="text-right">
-                    <span id="rate-nashik" class="text-lg font-bold font-mono text-gray-200">₹37/kg</span>
-                    <button onclick="openTradeModal('Nashik APMC', 37)" class="block mt-1 text-[11px] bg-agridark-800 hover:bg-emerald-950 text-emerald-300 font-semibold px-3 py-1 rounded-lg border border-emerald-500/30 transition-all">
+                    <span id="rate-nashik" class="text-lg font-bold font-mono text-slate-800">₹37/kg</span>
+                    <button onclick="openTradeModal('Nashik APMC', 37)" class="block mt-1 text-[11px] bg-white hover:bg-slate-100 text-slate-800 font-semibold px-3 py-1 rounded-lg border border-slate-300 transition-all shadow-xs">
                       Lock Price
                     </button>
                   </div>
                 </div>
 
                 <!-- Option 4: Local Middleman Rate -->
-                <div class="p-3 rounded-2xl bg-rose-950/20 border border-rose-500/20 flex items-center justify-between opacity-75">
+                <div class="p-3 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between">
                   <div class="flex items-center gap-3">
-                    <div class="p-2 bg-rose-500/10 text-rose-400 rounded-xl">
+                    <div class="p-2 bg-rose-100 text-rose-700 rounded-xl">
                       <i data-lucide="user-x" class="w-4 h-4"></i>
                     </div>
                     <div>
-                      <h4 class="text-xs font-bold text-rose-300">Local Unregulated Trader</h4>
-                      <p class="text-[10px] text-rose-400/80">Traditional Middlemen Cut</p>
+                      <h4 class="text-xs font-bold text-rose-900">Local Unregulated Trader</h4>
+                      <p class="text-[10px] text-rose-600">Traditional Middlemen Cut</p>
                     </div>
                   </div>
                   <div class="text-right">
-                    <span id="rate-middleman" class="text-sm font-bold font-mono text-rose-400 line-through">₹31/kg</span>
+                    <span id="rate-middleman" class="text-sm font-bold font-mono text-rose-600 line-through">₹31/kg</span>
                   </div>
                 </div>
 
@@ -631,13 +629,13 @@
             </div>
 
             <!-- Projected Farmer Margin Gain Card -->
-            <div class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-teal-950 to-agridark-800 border border-emerald-400/30 shadow-lg">
+            <div class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-slate-50 border border-emerald-300 shadow-sm">
               <div class="flex items-center justify-between mb-2">
-                <span id="lbl-margin-title" class="text-xs font-extrabold uppercase text-emerald-400 tracking-wider">Projected Farmer Margin Gain</span>
-                <span class="text-xs font-mono font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-500/30">+28% Net Gain</span>
+                <span id="lbl-margin-title" class="text-xs font-extrabold uppercase text-emerald-800 tracking-wider">Projected Farmer Margin Gain</span>
+                <span class="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">+28% Net Gain</span>
               </div>
-              <p class="text-xs text-gray-300 leading-relaxed">
-                By bypassing local middlemen cuts through edge grading verification, farmer receives <strong class="text-emerald-300 font-mono">₹11/kg extra revenue</strong> per inspected batch.
+              <p class="text-xs text-slate-700 leading-relaxed">
+                By bypassing local middlemen cuts through edge grading verification, farmer receives <strong class="text-emerald-800 font-mono">₹11/kg extra revenue</strong> per inspected batch.
               </p>
             </div>
 
@@ -648,36 +646,36 @@
 
 
       <!-- BOTTOM SECTION: COLD-CHAIN IOT TRANSIT TELEMETRY -->
-      <div class="glass-card rounded-3xl p-5 md:p-6 space-y-6 border border-emerald-500/20">
+      <div class="glass-card rounded-3xl p-5 md:p-6 space-y-6 border border-slate-200 bg-white">
         
         <!-- Header Controls -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-emerald-500/10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
-            <h2 id="lbl-telemetry-title" class="text-lg font-bold text-white flex items-center gap-2">
-              <i data-lucide="truck" class="w-5 h-5 text-emerald-400"></i>
+            <h2 id="lbl-telemetry-title" class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <i data-lucide="truck" class="w-5 h-5 text-emerald-600"></i>
               Cold-Chain IoT Transit Telemetry
             </h2>
-            <p id="lbl-telemetry-sub" class="text-xs text-emerald-400/80">Vehicle Tracker: Truck <strong class="text-white font-mono">#MH-12-AZ-9981</strong> (Pune ➔ Vashi Cold Corridor)</p>
+            <p id="lbl-telemetry-sub" class="text-xs text-slate-500">Vehicle Tracker: Truck <strong class="text-slate-900 font-mono">#MH-12-AZ-9981</strong> (Pune ➔ Vashi Cold Corridor)</p>
           </div>
 
           <!-- Gauges Strip -->
           <div class="flex flex-wrap items-center gap-3">
-            <div class="bg-agridark-900/90 border border-emerald-500/20 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
-              <i data-lucide="thermometer" class="w-4 h-4 text-emerald-400"></i>
-              <span class="text-gray-400">Internal Temp:</span>
-              <strong id="gauge-temp" class="text-emerald-300 font-mono">18.4°C</strong>
+            <div class="bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
+              <i data-lucide="thermometer" class="w-4 h-4 text-emerald-600"></i>
+              <span class="text-slate-600">Internal Temp:</span>
+              <strong id="gauge-temp" class="text-emerald-700 font-mono">18.4°C</strong>
             </div>
 
-            <div class="bg-agridark-900/90 border border-teal-500/20 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
-              <i data-lucide="droplets" class="w-4 h-4 text-teal-400"></i>
-              <span class="text-gray-400">Humidity:</span>
-              <strong id="gauge-humidity" class="text-teal-300 font-mono">62%</strong>
+            <div class="bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
+              <i data-lucide="droplets" class="w-4 h-4 text-teal-600"></i>
+              <span class="text-slate-600">Humidity:</span>
+              <strong id="gauge-humidity" class="text-teal-700 font-mono">62%</strong>
             </div>
 
-            <div class="bg-agridark-900/90 border border-amber-500/20 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
-              <i data-lucide="navigation" class="w-4 h-4 text-amber-400"></i>
-              <span class="text-gray-400">GPS Geofence:</span>
-              <strong class="text-amber-300">Active (NH-48)</strong>
+            <div class="bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-xl text-xs flex items-center gap-2">
+              <i data-lucide="navigation" class="w-4 h-4 text-amber-600"></i>
+              <span class="text-slate-600">GPS Geofence:</span>
+              <strong class="text-amber-700">Active (NH-48)</strong>
             </div>
           </div>
         </div>
@@ -692,7 +690,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-8 border-t border-emerald-500/10 py-4 px-6 text-center text-xs text-emerald-400/60">
+    <footer class="mt-8 border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500">
       <p>Farm-to-Fortune (Agri-Edge) Platform • Edge TinyML & APMC Direct Link • Built for Farmer Empowerment</p>
     </footer>
 
@@ -702,29 +700,29 @@
   <!-- ========================================== -->
   <!-- MODAL 1: DIGITAL QUALITY CERTIFICATE       -->
   <!-- ========================================== -->
-  <div id="certificate-modal" class="fixed inset-0 bg-agridark-900/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-emerald-500/40 relative shadow-2xl animate-float">
+  <div id="certificate-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-slate-200 relative shadow-2xl animate-float bg-white">
       
       <!-- Close Button -->
-      <button onclick="closeCertificateModal()" class="absolute top-4 right-4 text-emerald-400 hover:text-white p-2">
+      <button onclick="closeCertificateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <!-- Certificate Header -->
       <div class="text-center space-y-2 mb-6">
-        <div class="inline-flex p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl text-emerald-400 mb-1">
+        <div class="inline-flex p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-600 mb-1">
           <i data-lucide="award" class="w-8 h-8"></i>
         </div>
-        <h3 class="text-xl font-extrabold text-white tracking-wide">Digital Quality Certificate</h3>
-        <p class="text-xs text-emerald-400 font-mono">Agri-Edge Verified Quality Record</p>
+        <h3 class="text-xl font-extrabold text-slate-900 tracking-wide">Digital Quality Certificate</h3>
+        <p class="text-xs text-emerald-700 font-mono">Agri-Edge Verified Quality Record</p>
       </div>
 
       <!-- QR & Details Box -->
-      <div class="bg-agridark-900/90 rounded-2xl p-5 border border-emerald-500/20 space-y-4">
+      <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4">
         
         <!-- SVG QR Code Visual -->
         <div class="flex justify-center">
-          <div class="p-3 bg-white rounded-xl shadow-lg border border-emerald-400">
+          <div class="p-3 bg-white rounded-xl shadow-md border border-slate-300">
             <svg id="cert-qr-svg" class="w-36 h-36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- QR SVG dynamically generated in JS -->
             </svg>
@@ -733,25 +731,25 @@
 
         <!-- Certificate Fields -->
         <div class="space-y-2 text-xs font-mono">
-          <div class="flex justify-between border-b border-emerald-500/10 pb-1.5">
-            <span class="text-emerald-400/80">Batch ID:</span>
-            <span id="cert-batch-id" class="text-white font-bold">BATCH-2026-8941</span>
+          <div class="flex justify-between border-b border-slate-200 pb-1.5">
+            <span class="text-slate-500">Batch ID:</span>
+            <span id="cert-batch-id" class="text-slate-900 font-bold">BATCH-2026-8941</span>
           </div>
-          <div class="flex justify-between border-b border-emerald-500/10 pb-1.5">
-            <span class="text-emerald-400/80">Inspected Crop:</span>
-            <span id="cert-crop" class="text-emerald-300 font-bold">Fresh Tomato (Grade A)</span>
+          <div class="flex justify-between border-b border-slate-200 pb-1.5">
+            <span class="text-slate-500">Inspected Crop:</span>
+            <span id="cert-crop" class="text-emerald-700 font-bold">Fresh Tomato (Grade A)</span>
           </div>
-          <div class="flex justify-between border-b border-emerald-500/10 pb-1.5">
-            <span class="text-emerald-400/80">Inspection Time:</span>
-            <span id="cert-time" class="text-white">Today, 00:38:15 IST</span>
+          <div class="flex justify-between border-b border-slate-200 pb-1.5">
+            <span class="text-slate-500">Inspection Time:</span>
+            <span id="cert-time" class="text-slate-900">Today, 11:28:43 IST</span>
           </div>
-          <div class="flex justify-between border-b border-emerald-500/10 pb-1.5">
-            <span class="text-emerald-400/80">Verification Hash:</span>
-            <span id="cert-hash" class="text-emerald-400 truncate max-w-[180px]">0x8f3a9c1e...4109</span>
+          <div class="flex justify-between border-b border-slate-200 pb-1.5">
+            <span class="text-slate-500">Verification Hash:</span>
+            <span id="cert-hash" class="text-emerald-700 truncate max-w-[180px]">0x8f3a9c1e...4109</span>
           </div>
           <div class="flex justify-between pt-1">
-            <span class="text-emerald-400/80">Ledger Status:</span>
-            <span class="text-emerald-400 font-bold flex items-center gap-1">
+            <span class="text-slate-500">Ledger Status:</span>
+            <span class="text-emerald-700 font-bold flex items-center gap-1">
               <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Blockchain Verified
             </span>
           </div>
@@ -760,7 +758,7 @@
       </div>
 
       <!-- Action Button -->
-      <button onclick="shareCertificate()" class="w-full mt-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-agridark-900 font-extrabold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all">
+      <button onclick="shareCertificate()" class="w-full mt-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all">
         <i data-lucide="share-2" class="w-4 h-4"></i>
         <span>Share / Print Certificate</span>
       </button>
@@ -772,52 +770,52 @@
   <!-- ========================================== -->
   <!-- MODAL 2: APMC TRADE PRICE LOCK & PICKUP    -->
   <!-- ========================================== -->
-  <div id="trade-modal" class="fixed inset-0 bg-agridark-900/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-emerald-500/40 relative shadow-2xl">
+  <div id="trade-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 border border-slate-200 relative shadow-2xl bg-white">
       
       <!-- Close Button -->
-      <button onclick="closeTradeModal()" class="absolute top-4 right-4 text-emerald-400 hover:text-white p-2">
+      <button onclick="closeTradeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <!-- Modal Header -->
       <div class="space-y-1 mb-5">
-        <h3 id="trade-mandi-title" class="text-xl font-extrabold text-white">Lock Price: Pune APMC</h3>
-        <p class="text-xs text-emerald-400">Direct Co-op Buyout Contract</p>
+        <h3 id="trade-mandi-title" class="text-xl font-extrabold text-slate-900">Lock Price: Pune APMC</h3>
+        <p class="text-xs text-emerald-700 font-medium">Direct Co-op Buyout Contract</p>
       </div>
 
       <!-- Contract Form -->
       <div class="space-y-4 text-sm">
-        <div class="bg-agridark-900/90 p-4 rounded-2xl border border-emerald-500/20 space-y-3">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
           <div class="flex justify-between items-center text-xs">
-            <span class="text-emerald-400">Locked Rate:</span>
-            <span id="trade-locked-rate" class="text-lg font-bold font-mono text-emerald-300">₹42 / kg</span>
+            <span class="text-slate-600">Locked Rate:</span>
+            <span id="trade-locked-rate" class="text-lg font-bold font-mono text-emerald-700">₹42 / kg</span>
           </div>
 
           <div>
             <div class="flex justify-between items-center mb-1 text-xs">
-              <span class="text-gray-300">Batch Volume (kg):</span>
-              <span id="trade-weight-val" class="font-mono text-white font-bold">500 kg</span>
+              <span class="text-slate-700">Batch Volume (kg):</span>
+              <span id="trade-weight-val" class="font-mono text-slate-900 font-bold">500 kg</span>
             </div>
-            <input type="range" id="trade-weight-slider" min="100" max="2000" step="50" value="500" oninput="updateTradeCalc()" class="w-full accent-emerald-500 cursor-pointer" />
+            <input type="range" id="trade-weight-slider" min="100" max="2000" step="50" value="500" oninput="updateTradeCalc()" class="w-full accent-emerald-600 cursor-pointer" />
           </div>
 
-          <div class="pt-3 border-t border-emerald-500/10 flex justify-between items-center">
-            <span class="text-xs text-emerald-400 font-semibold">Total Estimated Payout:</span>
-            <span id="trade-total-payout" class="text-xl font-extrabold font-mono text-emerald-300">₹21,000</span>
+          <div class="pt-3 border-t border-slate-200 flex justify-between items-center">
+            <span class="text-xs text-slate-600 font-semibold">Total Estimated Payout:</span>
+            <span id="trade-total-payout" class="text-xl font-extrabold font-mono text-emerald-700">₹21,000</span>
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-emerald-300 mb-1.5 uppercase">Select Cold-Chain Pickup Slot</label>
-          <select class="w-full bg-agridark-900 text-white text-xs font-medium p-3 rounded-xl border border-emerald-500/30 focus:outline-none focus:border-emerald-400">
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5 uppercase">Select Cold-Chain Pickup Slot</label>
+          <select class="w-full bg-slate-50 text-slate-900 text-xs font-medium p-3 rounded-xl border border-slate-300 focus:outline-none focus:border-emerald-500">
             <option>Tomorrow Morning (08:00 AM - 11:00 AM)</option>
             <option>Tomorrow Afternoon (01:00 PM - 04:00 PM)</option>
             <option>Day After Tomorrow (09:00 AM - 12:00 PM)</option>
           </select>
         </div>
 
-        <button onclick="confirmTrade()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-agridark-900 font-extrabold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all">
+        <button onclick="confirmTrade()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all">
           <i data-lucide="check-square" class="w-5 h-5"></i>
           <span>Confirm & Issue Transport Pass</span>
         </button>
@@ -1046,12 +1044,12 @@
       document.getElementById('lbl-kpi-2').innerText = dict.kpi2;
       document.getElementById('lbl-kpi-3').innerText = dict.kpi3;
       document.getElementById('lbl-kpi-4').innerText = dict.kpi4;
-      document.getElementById('lbl-grading-title').innerHTML = `<i data-lucide="camera" class="w-5 h-5 text-emerald-400"></i> ${dict.gradingTitle}`;
+      document.getElementById('lbl-grading-title').innerHTML = `<i data-lucide="camera" class="w-5 h-5 text-emerald-600"></i> ${dict.gradingTitle}`;
       document.getElementById('lbl-grading-sub').innerText = dict.gradingSub;
       document.getElementById('btn-scan-text').innerText = dict.scanBtn;
-      document.getElementById('lbl-mandi-title').innerHTML = `<i data-lucide="store" class="w-5 h-5 text-emerald-400"></i> ${dict.mandiTitle}`;
+      document.getElementById('lbl-mandi-title').innerHTML = `<i data-lucide="store" class="w-5 h-5 text-emerald-600"></i> ${dict.mandiTitle}`;
       document.getElementById('lbl-margin-title').innerText = dict.marginTitle;
-      document.getElementById('lbl-telemetry-title').innerHTML = `<i data-lucide="truck" class="w-5 h-5 text-emerald-400"></i> ${dict.telemetryTitle}`;
+      document.getElementById('lbl-telemetry-title').innerHTML = `<i data-lucide="truck" class="w-5 h-5 text-emerald-600"></i> ${dict.telemetryTitle}`;
       document.getElementById('lbl-telemetry-sub').innerText = dict.telemetrySub;
 
       // Update language pill active states
@@ -1062,8 +1060,8 @@
           if (btnLogin) btnLogin.className = "px-2.5 py-1 rounded-md font-medium transition-all bg-emerald-600 text-white shadow";
           if (btnDash) btnDash.className = "px-2 py-0.5 rounded font-medium transition-all bg-emerald-600 text-white shadow";
         } else {
-          if (btnLogin) btnLogin.className = "px-2.5 py-1 rounded-md font-medium transition-all text-emerald-400 hover:text-white";
-          if (btnDash) btnDash.className = "px-2 py-0.5 rounded font-medium transition-all text-emerald-400 hover:text-white";
+          if (btnLogin) btnLogin.className = "px-2.5 py-1 rounded-md font-medium transition-all text-slate-600 hover:text-slate-900";
+          if (btnDash) btnDash.className = "px-2 py-0.5 rounded font-medium transition-all text-slate-600 hover:text-slate-900";
         }
       });
 
@@ -1081,12 +1079,12 @@
 
       if (tab === 'mobile') {
         tabMobile.className = "py-2.5 px-3 rounded-xl font-medium transition-all bg-emerald-600 text-white shadow-md flex items-center justify-center gap-2";
-        tabKisan.className = "py-2.5 px-3 rounded-xl font-medium transition-all text-emerald-300 hover:text-white flex items-center justify-center gap-2";
+        tabKisan.className = "py-2.5 px-3 rounded-xl font-medium transition-all text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2";
         formMobile.classList.remove('hidden');
         formKisan.classList.add('hidden');
       } else {
         tabKisan.className = "py-2.5 px-3 rounded-xl font-medium transition-all bg-emerald-600 text-white shadow-md flex items-center justify-center gap-2";
-        tabMobile.className = "py-2.5 px-3 rounded-xl font-medium transition-all text-emerald-300 hover:text-white flex items-center justify-center gap-2";
+        tabMobile.className = "py-2.5 px-3 rounded-xl font-medium transition-all text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2";
         formKisan.classList.remove('hidden');
         formMobile.classList.add('hidden');
       }
@@ -1131,7 +1129,7 @@
       const container = document.getElementById('crop-svg-container');
       
       container.innerHTML = `
-        <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-[0_0_20px_${config.primaryColor}66]">
+        <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-[0_0_20px_${config.primaryColor}88]">
           <defs>
             <radialGradient id="grad-tomato" cx="35%" cy="35%" r="65%">
               <stop offset="0%" stop-color="#f87171" />
@@ -1187,16 +1185,16 @@
       // Determine Grade
       let grade = 'GRADE A';
       let gradeSub = 'Export / Premium';
-      let gradeColorClass = 'text-emerald-300 glow-emerald';
+      let gradeColorClass = 'text-emerald-700 font-extrabold';
 
       if (defect > 3.8 || color < 93.0) {
         grade = 'GRADE B';
         gradeSub = 'Domestic Premium';
-        gradeColorClass = 'text-amber-300';
+        gradeColorClass = 'text-amber-700 font-extrabold';
       } else if (defect > 4.5) {
         grade = 'GRADE C';
         gradeSub = 'Processing Industry';
-        gradeColorClass = 'text-rose-400';
+        gradeColorClass = 'text-rose-700 font-extrabold';
       }
 
       state.grade = grade;
@@ -1214,7 +1212,7 @@
 
         const badge = document.getElementById('val-grade-badge');
         badge.innerText = grade;
-        badge.className = `text-sm font-extrabold tracking-wider ${gradeColorClass}`;
+        badge.className = `text-sm tracking-wider ${gradeColorClass}`;
         document.getElementById('val-grade-sub').innerText = gradeSub;
 
         updateMandiPrices();
@@ -1243,17 +1241,17 @@
       document.getElementById('rate-middleman').innerText = `₹${middleman}/kg`;
     }
 
-    // Initialize Chart.js Cold Chain Telemetry
+    // Initialize Chart.js Cold Chain Telemetry with Light Theme Colors
     function initTelemetryChart() {
       const ctx = document.getElementById('telemetryChart').getContext('2d');
       
       const gradTemp = ctx.createLinearGradient(0, 0, 0, 300);
-      gradTemp.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+      gradTemp.addColorStop(0, 'rgba(16, 185, 129, 0.25)');
       gradTemp.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
 
       const gradHum = ctx.createLinearGradient(0, 0, 0, 300);
-      gradHum.addColorStop(0, 'rgba(20, 184, 166, 0.3)');
-      gradHum.addColorStop(1, 'rgba(20, 184, 166, 0.0)');
+      gradHum.addColorStop(0, 'rgba(13, 148, 136, 0.2)');
+      gradHum.addColorStop(1, 'rgba(13, 148, 136, 0.0)');
 
       state.chart = new Chart(ctx, {
         type: 'line',
@@ -1263,23 +1261,23 @@
             {
               label: 'Internal Temp (°C)',
               data: [18.1, 18.3, 18.5, 18.2, 18.4, 18.6, 18.4],
-              borderColor: '#10b981',
+              borderColor: '#059669',
               backgroundColor: gradTemp,
               fill: true,
               tension: 0.4,
               borderWidth: 2.5,
-              pointBackgroundColor: '#10b981',
+              pointBackgroundColor: '#059669',
               pointRadius: 4
             },
             {
               label: 'Relative Humidity (%)',
               data: [60, 61, 63, 62, 64, 62, 62],
-              borderColor: '#14b8a6',
+              borderColor: '#0d9488',
               backgroundColor: gradHum,
               fill: true,
               tension: 0.4,
               borderWidth: 2,
-              pointBackgroundColor: '#14b8a6',
+              pointBackgroundColor: '#0d9488',
               pointRadius: 3
             }
           ]
@@ -1289,24 +1287,24 @@
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              labels: { color: '#9ca3af', font: { family: 'Inter', size: 11 } }
+              labels: { color: '#334155', font: { family: 'Inter', size: 11, weight: '600' } }
             },
             tooltip: {
-              backgroundColor: 'rgba(8, 13, 11, 0.9)',
-              borderColor: 'rgba(16, 185, 129, 0.4)',
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              borderColor: '#cbd5e1',
               borderWidth: 1,
-              titleColor: '#34d399',
-              bodyColor: '#ffffff'
+              titleColor: '#047857',
+              bodyColor: '#0f172a'
             }
           },
           scales: {
             x: {
-              grid: { color: 'rgba(16, 185, 129, 0.05)' },
-              ticks: { color: '#6b7280', font: { family: 'JetBrains Mono', size: 10 } }
+              grid: { color: 'rgba(226, 232, 240, 0.8)' },
+              ticks: { color: '#475569', font: { family: 'JetBrains Mono', size: 10 } }
             },
             y: {
-              grid: { color: 'rgba(16, 185, 129, 0.08)' },
-              ticks: { color: '#6b7280', font: { family: 'JetBrains Mono', size: 10 } }
+              grid: { color: 'rgba(226, 232, 240, 0.8)' },
+              ticks: { color: '#475569', font: { family: 'JetBrains Mono', size: 10 } }
             }
           }
         }
@@ -1432,7 +1430,7 @@
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       
-      const typeBg = type === 'success' ? 'bg-emerald-950/90 border-emerald-400 text-emerald-200' : 'bg-agridark-800/90 border-emerald-500/40 text-white';
+      const typeBg = type === 'success' ? 'bg-emerald-900 text-white border-emerald-700' : 'bg-slate-900 text-white border-slate-700';
       const iconName = type === 'success' ? 'check-circle-2' : 'info';
 
       toast.className = `${typeBg} border backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold flex items-center gap-2.5 transition-all transform translate-y-2 opacity-0 pointer-events-auto`;
