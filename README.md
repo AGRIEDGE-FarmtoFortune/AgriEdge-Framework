@@ -34,9 +34,9 @@ Post-harvest losses and non-standardized manual sorting lead to massive financia
 
 ## 👥 Core Team & Roles
 
-* **Durga** — *Team Lead & Logistics Integration*
-* **Shital** — *Hardware Prototyping & Telemetry Systems*
-* **Pramit** — *Technical Documentation, Presentation & Strategy*
+* **Durga Kadam** — *Team Lead & Logistics Integration*
+* **Shital Lumade** — *Hardware Prototyping & Telemetry Systems*
+* **Pramit Kharjule** — *Technical Documentation, Presentation & Strategy*
 * **Shaikh Suleman** — *System Architecture & Embedded IoT / Hardware Integration*
 * **Santosh Puri** — *Edge AI Model Training & Dataset Engineering*
 * **Sanchit Parchandekar** — *Simulation, Testing & Cloud Operations*
