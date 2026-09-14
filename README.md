@@ -1,7 +1,27 @@
 
 
 https://github.com/user-attachments/assets/46fd13ea-f152-4cd9-ad42-49f61cb8f216
+## 🏗️ System Architecture & Validation Scope
 
+AgriEdge is architected into two decoupled modules to balance edge computing constraints with high-throughput sensing:
+
+### 1. Module 1: IoT Microclimate & Local Edge Node (Current Simulation)
+- **Validation Status:** Fully Simulated & Verified (Wokwi Platform)
+- **Scope & Core Functions:**
+  - Real-time environmental telemetry acquisition via DHT22 (Ambient Temperature & Humidity) and an analog soil bed matrix probe.
+  - Local diagnostic and state visualization on an SSD1306 128x64 OLED display over the I2C bus.
+  - Cold-chain threshold boundary checks and real-time serial telemetry streaming.
+- **Hardware Profile:** ESP32 DevKit v1 running optimized MicroPython firmware.
+
+---
+
+### 2. Module 2: Vision-Based Produce Quality Pipeline (Physical Edge Node)
+- **Validation Status:** Computer Vision & Model Inference Pipeline (Edge Accelerator / Dedicated Vision Sensor)
+- **Scope & Core Functions:**
+  - Optical surface scanning and defect identification using a CNN/Vision classifier.
+  - Multi-class produce sorting: `Grade A` (Premium), `Grade B` (Commercial), and `DEFECTIVE` (Spoilage/Damage).
+  - Integration Interface: Transmits inference classification labels and confidence values via UART / MQTT directly into the Module 1 ESP32 node for consolidated OLED display and transit telemetry packaging.
+    
 # AgriEdge — Farm to Fortune 🌾⚡
 
 An intelligent, edge-computing and IoT-driven framework engineered for real-time post-harvest produce quality grading, smart transit telemetry, and direct mandi-to-buyer logistics synchronization.
