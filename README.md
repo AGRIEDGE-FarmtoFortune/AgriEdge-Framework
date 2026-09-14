@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/46fd13ea-f152-4cd9-ad42-49f61cb8f216
+
 # AgriEdge — Farm to Fortune 🌾⚡
 
 An intelligent, edge-computing and IoT-driven framework engineered for real-time post-harvest produce quality grading, smart transit telemetry, and direct mandi-to-buyer logistics synchronization.
