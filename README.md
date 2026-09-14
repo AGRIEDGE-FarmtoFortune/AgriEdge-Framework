@@ -48,7 +48,7 @@ Post-harvest losses and non-standardized manual sorting lead to massive financia
 | Domain | Technology / Platform | Purpose |
 | :--- | :--- | :--- |
 | **Edge Hardware** | ESP32 / ESP32-CAM | Core processing, image capture & telemetry acquisition |
-| **Sensors & Modules** | DHT22, NEO-6M GPS | Environmental condition tracking & live route positioning |
+| **Sensors & Modules** | DHT22, NEO-6M GPS,SOIL MOISTURE | Environmental condition tracking & live route positioning |
 | **Edge AI Engine** | TensorFlow Lite Micro / Edge Impulse | Quantized lightweight neural classification model |
 | **Simulation** | Wokwi | ESP32 microcontroller and telemetry circuit simulation |
 | **Frontend / UI** | HTML5, CSS3, JavaScript | Interactive logistics & quality inspection dashboard |
